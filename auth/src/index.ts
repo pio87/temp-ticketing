@@ -10,7 +10,7 @@ const start = async () => {
   }
   try {
     await mongoose.connect(process.env.MONGO_URI!);
-    console.log('Connected to mongo');
+    console.log('Connected to mongo!');
   } catch (e) {
     console.error(e);
   }
