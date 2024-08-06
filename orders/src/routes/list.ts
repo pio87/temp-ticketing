@@ -1,0 +1,17 @@
+import express, { Request, Response } from 'express';
+import { Order } from '../models/order';
+import { requireAuth } from '@pio87private/common';
+
+const router = express.Router();
+
+router.get(
+  '/api/orders',
+  requireAuth,
+  async (req: Request, res: Response) => {
+    const tickets = await Order.find({ userId: req.currentUser!.id }).populate('ticket');
+
+    res.status(200).send(tickets);
+  }
+);
+
+export { router as listOrderRouter };
